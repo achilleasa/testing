@@ -332,6 +332,10 @@ func (inst *MgoInstance) run() error {
 		}
 	}
 
+	if extraArgs := os.Getenv("EXTRA_MONGO_ARGS"); extraArgs != "" {
+		mgoargs = append(mgoargs, strings.Fields(extraArgs)...)
+	}
+
 	if inst.Params != nil {
 		mgoargs = append(mgoargs, inst.Params...)
 	}
